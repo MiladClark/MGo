@@ -99,11 +99,8 @@ export function AppLayout() {
   return (
     <div className="relative flex h-[100dvh] overflow-hidden bg-background">
       <main className="relative flex min-w-0 flex-1 flex-col">
-        <MobileHeader
-          onOpenSidebar={() => setSidebarOpen(true)}
-          onOpenSettings={() => setSettingsOpen(true)}
-        />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+        <MobileHeader onOpenSidebar={() => setSidebarOpen(true)} />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent" />
         <div className="relative flex min-h-0 flex-1 flex-col">
           <ChatArea />
         </div>

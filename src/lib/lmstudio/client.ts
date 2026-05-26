@@ -1,12 +1,15 @@
 import { mergeSystemPrompt } from "@/lib/persian";
+import { mergeModelVision } from "@/lib/modelVision";
+import { filterChatModels, type NativeModelInfo } from "./modelFilters";
+import { resolveApiBase, resolveNativeApiBase } from "./resolveUrl";
 import type {
   ApiChatMessage,
   ChatCompletionChunk,
   ConnectionConfig,
   InferenceConfig,
+  LmModel,
   ModelsResponse,
 } from "./types";
-import { resolveApiBase } from "./resolveUrl";
 
 function headers(config: ConnectionConfig): HeadersInit {
   const h: Record<string, string> = {
@@ -26,6 +29,75 @@ export class LmStudioError extends Error {
     super(message);
     this.name = "LmStudioError";
   }
+}
+
+interface NativeModelEntry {
+  id?: string;
+  key?: string;
+  type?: string;
+  capabilities?: { vision?: boolean };
+}
+
+interface NativeModelsResponse {
+  models?: NativeModelEntry[];
+  data?: NativeModelEntry[];
+}
+
+/** Model metadata from LM Studio /api/v0/models (type, vision, …). */
+export async function listNativeModelsInfo(
+  config: ConnectionConfig,
+  signal?: AbortSignal,
+): Promise<NativeModelInfo[]> {
+  const base = resolveNativeApiBase(config.baseUrl);
+  try {
+    const res = await fetch(`${base}/api/v0/models`, {
+      headers: headers(config),
+      signal,
+    });
+    if (!res.ok) return [];
+    const json = (await res.json()) as NativeModelsResponse;
+    const entries = json.models ?? json.data ?? [];
+    const result: NativeModelInfo[] = [];
+    for (const entry of entries) {
+      const id = entry.key ?? entry.id;
+      if (!id) continue;
+      result.push({
+        id,
+        type: entry.type,
+        supportsVision:
+          entry.capabilities?.vision === true || entry.type === "vlm",
+      });
+    }
+    return result;
+  } catch {
+    return [];
+  }
+}
+
+/** @deprecated Use listNativeModelsInfo — kept for compatibility */
+export async function listModelVisionCapabilities(
+  config: ConnectionConfig,
+  signal?: AbortSignal,
+): Promise<Map<string, boolean>> {
+  const map = new Map<string, boolean>();
+  for (const m of await listNativeModelsInfo(config, signal)) {
+    map.set(m.id, m.supportsVision);
+  }
+  return map;
+}
+
+/** Chat-capable models only (excludes embeddings). */
+export async function listChatModels(
+  config: ConnectionConfig,
+  signal?: AbortSignal,
+): Promise<LmModel[]> {
+  const [res, native] = await Promise.all([
+    listModels(config, signal),
+    listNativeModelsInfo(config, signal),
+  ]);
+  const visionById = new Map(native.map((m) => [m.id, m.supportsVision]));
+  const merged = mergeModelVision(res.data ?? [], visionById);
+  return filterChatModels(merged, native);
 }
 
 export async function listModels(

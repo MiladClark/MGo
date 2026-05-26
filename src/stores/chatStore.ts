@@ -4,8 +4,9 @@ import {
   buildUserMessageText,
   type PendingAttachment,
 } from "@/lib/attachments";
-import { chatStream, listModels } from "@/lib/lmstudio/client";
+import { chatStream, listChatModels } from "@/lib/lmstudio/client";
 import type { ApiChatMessage, ChatMessage, LmModel } from "@/lib/lmstudio/types";
+import { supportsModelVision } from "@/lib/modelVision";
 import { useConversationsStore } from "./conversationsStore";
 import { useSettingsStore } from "./settingsStore";
 
@@ -66,8 +67,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     const { connection } = useSettingsStore.getState();
     set({ isLoadingModels: true, error: null });
     try {
-      const res = await listModels(connection);
-      const models = res.data ?? [];
+      const models = await listChatModels(connection);
       set({ models, isLoadingModels: false });
       useSettingsStore.getState().setConnectionStatus("connected");
       const { selectedModel, defaultModel } = {
@@ -75,12 +75,15 @@ export const useChatStore = create<ChatState>((set, get) => ({
         defaultModel: useSettingsStore.getState().defaultModel,
       };
       const active = useConversationsStore.getState().getActive();
-      const preferred =
+      const candidate =
         active?.model ||
         selectedModel ||
         defaultModel ||
         models[0]?.id ||
         "";
+      const preferred = models.some((m) => m.id === candidate)
+        ? candidate
+        : models[0]?.id || "";
       if (preferred && get().selectedModel !== preferred) {
         get().setSelectedModel(preferred);
       }
@@ -110,6 +113,12 @@ export const useChatStore = create<ChatState>((set, get) => ({
     const model = get().selectedModel || active.model || settings.defaultModel;
     if (!model) {
       set({ error: "noModel" });
+      return;
+    }
+
+    const hasImages = attachments.some((a) => a.type === "image");
+    if (hasImages && !supportsModelVision(model, get().models)) {
+      set({ error: "noVision" });
       return;
     }
 

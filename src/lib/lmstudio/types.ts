@@ -32,6 +32,8 @@ export interface LmModel {
   id: string;
   object?: string;
   owned_by?: string;
+  /** From LM Studio /api/v0/models when available; else name heuristic */
+  supportsVision?: boolean;
 }
 
 export interface ModelsResponse {

@@ -19,6 +19,8 @@
     "placeholder": "هر چیزی بپرس…",
     "attach": "پیوست فایل یا تصویر",
     "attachImage": "پیوست تصویر",
+    "modelNoVision": "این مدل از تصویر پشتیبانی نمی‌کند",
+    "dropImageHint": "تصویر را اینجا رها کنید",
     "uploadImageTooBig": "تصویر بیش از حد بزرگ است (حداکثر ۸ مگابایت)",
     "uploadFileTooBig": "فایل بیش از حد بزرگ است (حداکثر ۲ مگابایت)",
     "uploadFailed": "آپلود ناموفق",
@@ -40,7 +42,8 @@
     "thinking": "در حال فکر کردن…",
     "errorGeneric": "خطایی رخ داد. اتصال LM Studio را بررسی کنید.",
     "errorConnection": "به LM Studio وصل نشد. تب Developer را باز کنید و سرور را Start کنید.",
-    "errorNoModel": "لطفاً ابتدا یک مدل انتخاب کنید."
+    "errorNoModel": "لطفاً ابتدا یک مدل انتخاب کنید.",
+    "errorNoVision": "مدل انتخاب‌شده از تصویر پشتیبانی نمی‌کند."
   },
   "header": {
     "connected": "متصل",

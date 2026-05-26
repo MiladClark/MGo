@@ -13,6 +13,7 @@ import { MessageBubble } from "./MessageBubble";
 import { ChatInput } from "./ChatInput";
 import type { PendingAttachment } from "@/lib/attachments";
 import { Logo } from "@/components/Logo";
+import { SuggestionButton } from "@/components/SuggestionButton";
 import { useChatStore } from "@/stores/chatStore";
 import { useConversationsStore } from "@/stores/conversationsStore";
 import { cn } from "@/lib/utils";
@@ -132,19 +133,16 @@ export function ChatArea() {
           <p className="mb-3 mt-6 text-center text-xs text-muted-foreground sm:mb-4 sm:mt-8">
             {t("chat.trySuggestions")}
           </p>
-          <div className="grid w-full max-w-3xl grid-cols-1 gap-2 px-1 sm:grid-cols-2 sm:px-0">
+          <div className="grid w-full min-w-0 max-w-3xl grid-cols-1 gap-2 px-1 sm:grid-cols-2 sm:px-0">
             {suggestionKeys.map((key, i) => {
               const Icon = SUGGESTION_ICONS[i] ?? Sparkles;
               return (
-                <Button
+                <SuggestionButton
                   key={key}
-                  variant="outline"
-                  className="h-auto justify-start gap-3 rounded-2xl border-border/60 bg-card/40 px-4 py-3.5 text-start text-sm font-normal hover:bg-card/80"
+                  icon={<Icon className="h-4 w-4" />}
+                  label={t(key)}
                   onClick={() => void sendMessage(t(key))}
-                >
-                  <Icon className="h-4 w-4 shrink-0 text-primary" />
-                  <span className="leading-relaxed">{t(key)}</span>
-                </Button>
+                />
               );
             })}
           </div>
@@ -186,7 +184,9 @@ export function ChatArea() {
           <span>
             {error === "noModel"
               ? t("chat.errorNoModel")
-              : t("chat.errorGeneric")}
+              : error === "noVision"
+                ? t("chat.errorNoVision")
+                : t("chat.errorGeneric")}
           </span>
           <Button variant="ghost" size="sm" onClick={clearError}>
             ×

@@ -29,3 +29,12 @@ export function resolveApiBase(configBaseUrl: string): string {
   }
   return normalized;
 }
+
+/** LM Studio native REST root (without /v1) — for /api/v0/models capabilities */
+export function resolveNativeApiBase(configBaseUrl: string): string {
+  const normalized = normalizeBaseUrl(configBaseUrl).replace(/\/v1\/?$/, "");
+  if (import.meta.env.DEV && isLocalLmStudioUrl(normalizeBaseUrl(configBaseUrl))) {
+    return "/api/lmstudio";
+  }
+  return normalized;
+}

@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { testConnection, listModels } from "@/lib/lmstudio/client";
+import { listChatModels, testConnection } from "@/lib/lmstudio/client";
 import type { Locale } from "@/lib/i18n";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useChatStore } from "@/stores/chatStore";
@@ -66,8 +66,8 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
     const result = await testConnection(settings.connection);
     if (result.ok) {
       try {
-        const res = await listModels(settings.connection);
-        setModels(res.data?.map((m) => m.id) ?? []);
+        const chatModels = await listChatModels(settings.connection);
+        setModels(chatModels.map((m) => m.id));
       } catch {
         setModels([]);
       }

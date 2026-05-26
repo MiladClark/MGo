@@ -181,7 +181,7 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
         </div>
         <Button
           variant="ghost"
-          className="w-full min-w-0 justify-start gap-2 rounded-xl"
+          className="w-full min-w-0 justify-start gap-2 rounded-xl border border-accent"
           onClick={onOpenSettings}
         >
           <Settings className="h-4 w-4 shrink-0" />

@@ -19,6 +19,8 @@
     "placeholder": "Ask anything…",
     "attach": "Attach file or image",
     "attachImage": "Attach image",
+    "modelNoVision": "This model does not support images",
+    "dropImageHint": "Drop image here",
     "uploadImageTooBig": "Image too large (max 8 MB)",
     "uploadFileTooBig": "File too large (max 2 MB)",
     "uploadFailed": "Upload failed",
@@ -40,7 +42,8 @@
     "thinking": "Thinking…",
     "errorGeneric": "Something went wrong. Check LM Studio connection.",
     "errorConnection": "Cannot reach LM Studio. Open Developer tab and start the server.",
-    "errorNoModel": "Please select a model first."
+    "errorNoModel": "Please select a model first.",
+    "errorNoVision": "The selected model does not support images."
   },
   "header": {
     "connected": "Connected",

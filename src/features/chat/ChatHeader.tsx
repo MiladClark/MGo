@@ -29,7 +29,7 @@ export function ChatHeader() {
         className={cn(
           "flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium",
           connected
-            ? "bg-primary/15 text-primary"
+            ? "bg-success/15 text-success"
             : "bg-muted text-muted-foreground",
         )}
       >
