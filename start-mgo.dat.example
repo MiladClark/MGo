@@ -1,0 +1,11 @@
+# Copy to start-mgo.dat and edit if needed.
+# Paths are relative to the project root (where this file lives).
+
+# Project directory (default: current folder)
+MGO_DIR=.
+
+# Vite dev server port (must match vite.config.ts)
+PORT=1420
+
+# 1 = open default browser, 0 = server only
+OPEN_BROWSER=1

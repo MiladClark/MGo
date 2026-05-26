@@ -3,9 +3,10 @@
     "name": "MGo",
     "tagline": "گفتگو با مدل‌های محلی از طریق LM Studio",
     "heroTitle": "mgo",
-    "heroSubtitle": "هر چیزی بپرس — فارسی، محلی، سریع"
+    "heroSubtitle": "به رابط کار بری ام جی او خوش آمدید"
   },
   "update": {
+    "newShort": "آپدیت جدید",
     "critical": "نسخه {{version}} — آپدیت حیاتی موجود است",
     "available": "نسخه {{version}} — به‌روزرسانی موجود است",
     "button": "آپدیت",
@@ -63,6 +64,20 @@
     "selectModel": "انتخاب مدل",
     "noModels": "مدلی لود نشده"
   },
+  "palette": {
+    "title": "پالت رنگی",
+    "subtitle": "یک استایل را لمس کنید — فوراً اعمال می‌شود",
+    "close": "بستن",
+    "openPicker": "انتخاب پالت رنگی",
+    "names": {
+      "mgo": "رسمی برند",
+      "ocean": "آرام و خنک",
+      "violet": "مدرن نرم",
+      "rose": "گرم و صورتی",
+      "forest": "طبیعی و متمرکز",
+      "ember": "گرم و جسور"
+    }
+  },
   "settings": {
     "title": "تنظیمات",
     "close": "بستن",
@@ -90,7 +105,7 @@
     "langFa": "فارسی",
     "langEn": "English",
     "save": "ذخیره",
-    "aboutText": "MGo رابط چت مدرن برای LM Studio است. نسخه {{version}}.",
+    "aboutText": "MGo رابط چت مدرن برای LM Studio است که توسط میلاد کلارک در 2026 ساخته شده است. نسخه {{version}}.",
     "lmStudioHelp": "LM Studio → Developer → Start server (پورت 1234)",
     "devProxyHint": "حالت توسعه: درخواست‌ها از طریق /api/lmstudio به LM Studio هدایت می‌شوند (رفع CORS)."
   }

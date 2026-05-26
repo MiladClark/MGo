@@ -16,7 +16,7 @@ export function MobileHeader({ onOpenSidebar }: MobileHeaderProps) {
       <Button
         variant="ghost"
         size="icon"
-        className="h-9 w-9 shrink-0 rounded-lg"
+        className="h-9 w-9 shrink-0"
         onClick={onOpenSidebar}
         aria-label={t("sidebar.expand")}
       >
@@ -25,7 +25,7 @@ export function MobileHeader({ onOpenSidebar }: MobileHeaderProps) {
 
       <Logo variant="icon" className="h-7 w-7" />
 
-      <ThemeToggle className="h-9 w-9 shrink-0 rounded-lg" />
+      <ThemeToggle className="h-9 w-9 shrink-0" />
     </header>
   );
 }

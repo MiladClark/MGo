@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getModelDisplayTitle, getModelLabel } from "@/lib/modelDisplayName";
 import { cn } from "@/lib/utils";
 import { useChatStore } from "@/stores/chatStore";
 import { useSettingsStore } from "@/stores/settingsStore";
@@ -57,8 +58,12 @@ export function ChatHeader() {
         </SelectTrigger>
         <SelectContent>
           {models.map((m) => (
-            <SelectItem key={m.id} value={m.id}>
-              {m.id}
+            <SelectItem
+              key={m.id}
+              value={m.id}
+              title={getModelDisplayTitle(m.id)}
+            >
+              {getModelLabel(m)}
             </SelectItem>
           ))}
         </SelectContent>

@@ -20,6 +20,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { listChatModels, testConnection } from "@/lib/lmstudio/client";
+import {
+  formatModelDisplayName,
+  getModelDisplayTitle,
+} from "@/lib/modelDisplayName";
 import type { Locale } from "@/lib/i18n";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useChatStore } from "@/stores/chatStore";
@@ -145,8 +149,12 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
                 </SelectTrigger>
                 <SelectContent>
                   {models.map((id) => (
-                    <SelectItem key={id} value={id}>
-                      {id}
+                    <SelectItem
+                      key={id}
+                      value={id}
+                      title={getModelDisplayTitle(id)}
+                    >
+                      {formatModelDisplayName(id)}
                     </SelectItem>
                   ))}
                 </SelectContent>

@@ -38,7 +38,7 @@ export function SuggestionButton({ icon, label, onClick }: SuggestionButtonProps
     <Button
       type="button"
       variant="outline"
-      className="group/suggestion h-auto w-full min-w-0 justify-start gap-3 overflow-hidden rounded-2xl border-border/60 bg-card/40 px-4 py-3.5 text-start text-sm font-normal hover:bg-card/80"
+      className="group/suggestion h-auto w-full min-w-0 justify-start gap-3 overflow-hidden rounded-full border-border/60 bg-card/40 px-4 py-3.5 text-start text-sm font-normal text-foreground hover:bg-card/80 hover:text-foreground"
       onClick={onClick}
       onMouseEnter={() => overflows && setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}

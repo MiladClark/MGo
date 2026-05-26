@@ -15,6 +15,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { listChatModels, testConnection } from "@/lib/lmstudio/client";
+import {
+  formatModelDisplayName,
+  getModelDisplayTitle,
+} from "@/lib/modelDisplayName";
 import type { Locale } from "@/lib/i18n";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useChatStore } from "@/stores/chatStore";
@@ -127,7 +131,7 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 shrink-0 rounded-lg"
+            className="h-9 w-9 shrink-0"
             onClick={() => onOpenChange(false)}
             aria-label={t("settings.close")}
           >
@@ -215,8 +219,13 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
                   </SelectTrigger>
                   <SelectContent>
                     {models.map((id) => (
-                      <SelectItem key={id} value={id} className="text-xs">
-                        {id}
+                      <SelectItem
+                        key={id}
+                        value={id}
+                        className="text-xs"
+                        title={getModelDisplayTitle(id)}
+                      >
+                        {formatModelDisplayName(id)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -337,7 +346,7 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
         </div>
 
         <footer className="shrink-0 border-t border-border p-4">
-          <Button className="w-full rounded-xl" onClick={() => void handleSave()}>
+          <Button className="w-full" onClick={() => void handleSave()}>
             {t("settings.save")}
           </Button>
         </footer>

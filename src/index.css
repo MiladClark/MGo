@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./styles/palettes.css";
 @import "highlight.js/styles/github.css";
 @import "highlight.js/styles/github-dark.css";
 
@@ -36,63 +37,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* MGo brand — light */
 :root {
   --radius: 0.75rem;
-  --background: #f6f7fb;
-  --foreground: #121524;
-  --card: #ffffff;
-  --card-foreground: #121524;
-  --popover: #ffffff;
-  --popover-foreground: #121524;
-  --primary: #ffc05c;
-  --primary-foreground: #121524;
-  --secondary: #ebeef6;
-  --secondary-foreground: #121524;
-  --muted: #eef1f8;
-  --muted-foreground: #5c647d;
-  --accent: #fff3dd;
-  --accent-foreground: #121524;
-  --destructive: oklch(0.55 0.2 25);
-  --success: oklch(0.52 0.14 145);
-  --success-foreground: oklch(0.99 0.005 145);
-  --border: #d8dde9;
-  --input: #d8dde9;
-  --ring: #ffc05c;
-  --sidebar: #f0f2f8;
-  --sidebar-foreground: #121524;
-  --sidebar-border: #d8dde9;
-  --sidebar-accent: #e8ecf5;
-  --sidebar-accent-foreground: #121524;
-}
-
-/* MGo brand — dark */
-.dark {
-  --background: #121524;
-  --foreground: #f4f6ff;
-  --card: #181c2d;
-  --card-foreground: #f4f6ff;
-  --popover: #181c2d;
-  --popover-foreground: #f4f6ff;
-  --primary: #ffc05c;
-  --primary-foreground: #121524;
-  --secondary: #242a43;
-  --secondary-foreground: #eef1fb;
-  --muted: #1d2238;
-  --muted-foreground: #98a1be;
-  --accent: #ffc05c;
-  --accent-foreground: #121524;
-  --destructive: oklch(0.62 0.19 25);
-  --success: oklch(0.76 0.14 145);
-  --success-foreground: oklch(0.14 0.02 145);
-  --border: #2a3048;
-  --input: #2a3048;
-  --ring: #ffc05c;
-  --sidebar: #151a2b;
-  --sidebar-foreground: #edf0fb;
-  --sidebar-border: #2a3048;
-  --sidebar-accent: #242b45;
-  --sidebar-accent-foreground: #f5f7ff;
+  --palette-glow: 255, 192, 92;
 }
 
 @layer base {
@@ -114,12 +61,12 @@
 html:not(.dark) body {
   background-image: radial-gradient(
       circle at 12% 0%,
-      rgba(255, 192, 92, 0.14) 0%,
+      rgba(var(--palette-glow), 0.14) 0%,
       transparent 42%
     ),
     radial-gradient(
       circle at 92% 18%,
-      rgba(18, 21, 36, 0.04) 0%,
+      rgba(var(--palette-glow), 0.06) 0%,
       transparent 48%
     );
 }
@@ -127,29 +74,24 @@ html:not(.dark) body {
 .dark body {
   background-image: radial-gradient(
       circle at 10% 0%,
-      rgba(255, 192, 92, 0.18) 0%,
+      rgba(var(--palette-glow), 0.18) 0%,
       transparent 45%
     ),
     radial-gradient(
       circle at 95% 25%,
-      rgba(255, 192, 92, 0.12) 0%,
+      rgba(var(--palette-glow), 0.12) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 50% 100%,
-      rgba(255, 192, 92, 0.08) 0%,
+      rgba(var(--palette-glow), 0.08) 0%,
       transparent 55%
     );
 }
 
-html:not(.dark) .prose-chat pre .hljs {
-  background: #eef1f8 !important;
-  color: #121524 !important;
-}
-
-html.dark .prose-chat pre .hljs {
-  background: #1d2238 !important;
-  color: #f4f6ff !important;
+.prose-chat pre .hljs {
+  background: var(--hljs-bg) !important;
+  color: var(--hljs-fg) !important;
 }
 
 .hljs {
@@ -199,11 +141,12 @@ html.dark .prose-chat pre .hljs {
 /* Thin modern scrollbars */
 .mgo-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(18, 21, 36, 0.22) transparent;
+  scrollbar-color: color-mix(in srgb, var(--foreground) 22%, transparent)
+    transparent;
 }
 
 .dark .mgo-scrollbar {
-  scrollbar-color: rgba(255, 192, 92, 0.35) transparent;
+  scrollbar-color: color-mix(in srgb, var(--primary) 40%, transparent) transparent;
 }
 
 .mgo-scrollbar::-webkit-scrollbar {
@@ -216,24 +159,24 @@ html.dark .prose-chat pre .hljs {
 }
 
 .mgo-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(18, 21, 36, 0.2);
+  background: color-mix(in srgb, var(--foreground) 20%, transparent);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
 .mgo-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(18, 21, 36, 0.32);
+  background: color-mix(in srgb, var(--foreground) 32%, transparent);
   background-clip: padding-box;
 }
 
 .dark .mgo-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 192, 92, 0.35);
+  background: color-mix(in srgb, var(--primary) 38%, transparent);
   background-clip: padding-box;
 }
 
 .dark .mgo-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 192, 92, 0.5);
+  background: color-mix(in srgb, var(--primary) 52%, transparent);
   background-clip: padding-box;
 }
 
@@ -277,4 +220,34 @@ html.dark .prose-chat pre .hljs {
   .animate-suggestion-marquee {
     animation: none;
   }
+}
+
+@keyframes sheet-slide-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+[data-state="open"].sheet-bottom {
+  animation: sheet-slide-in 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+[data-state="closed"].sheet-bottom {
+  animation: sheet-slide-out 0.24s cubic-bezier(0.32, 0.72, 0, 1);
 }

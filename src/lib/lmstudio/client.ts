@@ -1,3 +1,4 @@
+import { formatModelDisplayName } from "@/lib/modelDisplayName";
 import { mergeSystemPrompt } from "@/lib/persian";
 import { mergeModelVision } from "@/lib/modelVision";
 import { filterChatModels, type NativeModelInfo } from "./modelFilters";
@@ -97,7 +98,10 @@ export async function listChatModels(
   ]);
   const visionById = new Map(native.map((m) => [m.id, m.supportsVision]));
   const merged = mergeModelVision(res.data ?? [], visionById);
-  return filterChatModels(merged, native);
+  return filterChatModels(merged, native).map((m) => ({
+    ...m,
+    displayName: formatModelDisplayName(m.id),
+  }));
 }
 
 export async function listModels(

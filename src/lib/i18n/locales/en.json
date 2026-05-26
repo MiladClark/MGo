@@ -3,9 +3,10 @@
     "name": "MGo",
     "tagline": "Chat with your local models via LM Studio",
     "heroTitle": "mgo",
-    "heroSubtitle": "Ask anything — Persian, local, fast"
+    "heroSubtitle": "welcome to the mgo chat interface"
   },
   "update": {
+    "newShort": "New update",
     "critical": "Version {{version}} — critical update available",
     "available": "Version {{version}} — update available",
     "button": "Update",
@@ -63,6 +64,20 @@
     "selectModel": "Select model",
     "noModels": "No models loaded"
   },
+  "palette": {
+    "title": "Color palette",
+    "subtitle": "Tap a style — changes apply instantly",
+    "close": "Close",
+    "openPicker": "Choose color palette",
+    "names": {
+      "mgo": "Official brand",
+      "ocean": "Cool & calm",
+      "violet": "Soft modern",
+      "rose": "Warm blush",
+      "forest": "Natural focus",
+      "ember": "Bold warmth"
+    }
+  },
   "settings": {
     "title": "Settings",
     "close": "Close",
@@ -90,7 +105,7 @@
     "langFa": "فارسی",
     "langEn": "English",
     "save": "Save",
-    "aboutText": "MGo is a modern chat UI for LM Studio. Version {{version}}.",
+    "aboutText": "MGo is a modern chat UI for LM Studio created by Milad Clark 2026. Version {{version}}.",
     "lmStudioHelp": "LM Studio → Developer → Start server (port 1234)",
     "devProxyHint": "Dev mode: requests go through /api/lmstudio proxy to LM Studio (fixes CORS)."
   }

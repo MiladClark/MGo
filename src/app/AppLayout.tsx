@@ -6,6 +6,7 @@ import { ChatArea } from "@/features/chat/ChatArea";
 import { SettingsPanel } from "@/features/settings/SettingsPanel";
 import { MobileHeader } from "@/components/MobileHeader";
 import { Button } from "@/components/ui/button";
+import { AppVersionBadge } from "@/components/AppVersionBadge";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { testConnection } from "@/lib/lmstudio/client";
 import { useSettingsStore } from "@/stores/settingsStore";
@@ -162,17 +163,18 @@ export function AppLayout() {
           <Button
             variant="secondary"
             size="icon"
-            className="h-10 w-10 rounded-xl border border-border shadow-lg"
+            className="h-10 w-10 border border-border shadow-lg"
             onClick={() => setSidebarOpen(true)}
             title={t("sidebar.expand")}
           >
             <PanelRightOpen className="h-5 w-5" />
           </Button>
-          <ThemeToggle className="h-10 w-10 rounded-xl border border-border bg-card shadow-lg" />
+          <ThemeToggle className="h-10 w-10 border border-border bg-card shadow-lg" />
         </div>
       )}
 
       <SettingsPanel open={settingsOpen} onOpenChange={setSettingsOpen} />
+      <AppVersionBadge />
     </div>
   );
 }

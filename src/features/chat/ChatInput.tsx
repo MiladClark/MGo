@@ -50,6 +50,7 @@ import {
 
 } from "@/components/ui/select";
 
+import { getModelDisplayTitle, getModelLabel } from "@/lib/modelDisplayName";
 import { cn } from "@/lib/utils";
 
 import {
@@ -546,7 +547,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
 
                 size="icon"
 
-                className="h-9 w-9 shrink-0 rounded-xl text-muted-foreground hover:text-foreground"
+                className="h-9 w-9 shrink-0 text-muted-foreground hover:text-foreground"
 
                 onClick={() => fileInputRef.current?.click()}
 
@@ -572,7 +573,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
 
                 className={cn(
 
-                  "h-9 w-9 shrink-0 rounded-xl",
+                  "h-9 w-9 shrink-0",
 
                   supportsVision
 
@@ -648,10 +649,12 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
 
                   {models.map((m) => (
 
-                    <SelectItem key={m.id} value={m.id}>
-
-                      {m.id}
-
+                    <SelectItem
+                      key={m.id}
+                      value={m.id}
+                      title={getModelDisplayTitle(m.id)}
+                    >
+                      {getModelLabel(m)}
                     </SelectItem>
 
                   ))}
@@ -670,7 +673,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
 
                   variant="secondary"
 
-                  className="h-9 w-9 shrink-0 rounded-xl"
+                  className="h-9 w-9 shrink-0"
 
                   onClick={stopStreaming}
 
@@ -686,7 +689,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
 
                   size="icon"
 
-                  className="h-9 w-9 shrink-0 rounded-xl bg-primary hover:bg-primary/90"
+                  className="h-9 w-9 shrink-0 bg-primary hover:bg-primary/90"
 
                   onClick={handleSend}
 

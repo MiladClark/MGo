@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { ChatMessage } from "@/lib/lmstudio/types";
 import { loadPersistedFallback, savePersisted } from "@/lib/persist";
+import i18n from "@/lib/i18n";
 
 export interface Conversation {
   id: string;
@@ -33,8 +34,13 @@ function newId() {
   return crypto.randomUUID();
 }
 
+/** Titles saved before i18n defaults (English or Persian). */
+export function isDefaultChatTitle(title: string): boolean {
+  return title === "New chat" || title === "گفتگوی جدید";
+}
+
 function defaultTitle() {
-  return "New chat";
+  return i18n.t("sidebar.newChat");
 }
 
 export const useConversationsStore = create<ConversationsState>((set, get) => ({
@@ -154,7 +160,7 @@ export const useConversationsStore = create<ConversationsState>((set, get) => ({
 
   autoTitle: (id, firstUserMessage) => {
     const conv = get().conversations.find((c) => c.id === id);
-    if (!conv || conv.title !== defaultTitle()) return;
+    if (!conv || !isDefaultChatTitle(conv.title)) return;
     const title =
       firstUserMessage.trim().slice(0, 28) +
       (firstUserMessage.trim().length > 28 ? "…" : "");

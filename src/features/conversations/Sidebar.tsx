@@ -10,10 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/Logo";
-import { UpdateBanner } from "@/features/conversations/UpdateBanner";
+import { PaletteToggle } from "@/components/PaletteToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
-import { useConversationsStore } from "@/stores/conversationsStore";
+import {
+  isDefaultChatTitle,
+  useConversationsStore,
+} from "@/stores/conversationsStore";
 import { useSettingsStore } from "@/stores/settingsStore";
 import { useChatStore } from "@/stores/chatStore";
 import { useUiStore } from "@/stores/uiStore";
@@ -74,6 +77,7 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
       <div className="flex items-center justify-between gap-1 p-3">
         <Logo variant="wordmark" className="h-8 max-w-[120px]" />
         <div className="flex shrink-0 items-center gap-0.5">
+          <PaletteToggle className="h-8 w-8 shrink-0" />
           <ThemeToggle className="h-8 w-8 shrink-0" />
           <Button
             variant="ghost"
@@ -89,15 +93,13 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
 
       <div className="px-3 pb-2">
         <Button
-          className="w-full justify-center gap-2 rounded-xl bg-primary font-medium shadow-md hover:bg-primary/90"
+          className="w-full justify-center gap-2 bg-primary font-medium shadow-md hover:bg-primary/90"
           onClick={handleNewChat}
         >
           <MessageSquarePlus className="h-4 w-4 shrink-0" />
           <span className="truncate">{t("sidebar.newChat")}</span>
         </Button>
       </div>
-
-      <UpdateBanner />
 
       <p className="shrink-0 px-4 py-2 text-xs font-medium text-muted-foreground">
         {t("sidebar.conversations")}
@@ -106,7 +108,9 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
       <div className="mgo-scrollbar min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-2">
         <ul className="w-full space-y-0.5 pb-2">
           {conversations.map((c) => {
-            const label = clipTitle(c.title);
+            const label = isDefaultChatTitle(c.title)
+              ? t("sidebar.newChat")
+              : clipTitle(c.title);
             return (
               <li key={c.id} className="w-full max-w-full">
                 {renamingId === c.id ? (
@@ -124,7 +128,7 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
                 ) : (
                   <div
                     className={cn(
-                      "group relative w-full max-w-full rounded-xl transition-colors",
+                      "group relative w-full max-w-full rounded-full transition-colors",
                       activeId === c.id
                         ? "bg-sidebar-accent"
                         : "hover:bg-sidebar-accent/50",
@@ -184,7 +188,7 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
         </div>
         <Button
           variant="ghost"
-          className="w-full min-w-0 justify-start gap-2 rounded-xl border border-border/70 bg-background/20"
+          className="w-full min-w-0 justify-start gap-2 border border-border/70 bg-background/20"
           onClick={onOpenSettings}
         >
           <Settings className="h-4 w-4 shrink-0" />

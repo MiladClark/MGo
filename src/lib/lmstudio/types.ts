@@ -30,6 +30,8 @@ export interface ApiChatMessage {
 
 export interface LmModel {
   id: string;
+  /** Friendly UI label derived from id */
+  displayName?: string;
   object?: string;
   owned_by?: string;
   /** From LM Studio /api/v0/models when available; else name heuristic */

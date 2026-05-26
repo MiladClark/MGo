@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { mgoUpdatePlugin } from "./vite-plugin-mgo-update";
+import { tsMimeFixPlugin } from "./vite-plugin-ts-mime";
 
 const host = process.env.TAURI_DEV_HOST;
 const pkg = JSON.parse(
@@ -14,7 +15,7 @@ export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     tailwindcss(),
-    ...(command === "serve" ? [mgoUpdatePlugin()] : []),
+    ...(command === "serve" ? [tsMimeFixPlugin(), mgoUpdatePlugin()] : []),
   ],
   define: {
     "import.meta.env.VITE_APP_VERSION": JSON.stringify(pkg.version),
@@ -29,6 +30,9 @@ export default defineConfig(({ command }) => ({
     port: 1420,
     strictPort: true,
     host: host || false,
+    headers: {
+      "X-Content-Type-Options": "nosniff",
+    },
     proxy: {
       "/api/lmstudio": {
         target: "http://127.0.0.1:1234",
