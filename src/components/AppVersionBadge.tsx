@@ -51,9 +51,8 @@ export function AppVersionBadge() {
   return (
     <div
       className={cn(
-        "fixed bottom-4 right-4 z-30 select-none",
-        "max-md:bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))]",
-        "max-md:right-[max(1rem,env(safe-area-inset-right,0px))]",
+        "pointer-events-none fixed bottom-4 right-4 z-30 hidden select-none md:block",
+        "md:bottom-4 md:right-4",
         updateVisible && "pointer-events-auto",
       )}
       aria-live="polite"

@@ -30,6 +30,7 @@ interface SettingsPanelProps {
 }
 
 const PANEL_TRANSITION_MS = 300;
+const APP_VERSION = import.meta.env.VITE_APP_VERSION ?? "0.0.0";
 
 export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
   const { t } = useTranslation();
@@ -127,7 +128,12 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
         style={{ transitionDuration: `${PANEL_TRANSITION_MS}ms` }}
       >
         <header className="flex shrink-0 items-center justify-between gap-3 border-b border-border px-5 py-4">
-          <h2 className="text-lg font-semibold">{t("settings.title")}</h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold">{t("settings.title")}</h2>
+            <span className="inline-flex items-center rounded-full border border-border/70 bg-muted/40 px-2 py-0.5 text-[10px] font-medium tracking-wide text-muted-foreground">
+              MGo&nbsp;v{APP_VERSION}
+            </span>
+          </div>
           <Button
             variant="ghost"
             size="icon"
@@ -338,7 +344,7 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
               <h3 className="mb-2 text-sm font-semibold">{t("settings.about")}</h3>
               <p className="text-xs text-muted-foreground">
                 {t("settings.aboutText", {
-                  version: import.meta.env.VITE_APP_VERSION ?? "0.0.0",
+                  version: APP_VERSION,
                 })}
               </p>
             </section>

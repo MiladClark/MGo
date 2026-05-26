@@ -122,7 +122,7 @@ export function ChatArea() {
   if (isEmpty) {
     return (
       <div className="flex h-full flex-1 flex-col">
-        <div className="flex flex-1 flex-col items-center justify-center px-3 pb-4 pt-2 sm:px-4 sm:pb-6">
+        <div className="mgo-scrollbar flex flex-1 flex-col items-center justify-center overflow-y-auto px-3 pb-4 pt-2 sm:px-4 sm:pb-6">
           <div className="mb-6 flex flex-col items-center text-center sm:mb-10">
             <Logo variant="wordmark" className="mb-3 h-10 sm:mb-4 sm:h-14" />
             <p className="text-sm text-muted-foreground">{t("app.heroSubtitle")}</p>
