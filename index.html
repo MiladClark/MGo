@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/mgo-fav-white.png" id="mgo-favicon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>MGo</title>
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("mgo:settings");
+          var theme = "dark";
+          if (raw) {
+            var s = JSON.parse(raw);
+            if (s.theme === "light" || s.theme === "dark") theme = s.theme;
+          }
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          document.documentElement.style.colorScheme = theme;
+          var fav = document.getElementById("mgo-favicon");
+          if (fav) fav.href = theme === "dark" ? "/mgo-fav-white.png" : "/mgo-fav-black.png";
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

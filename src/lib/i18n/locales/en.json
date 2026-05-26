@@ -1,0 +1,82 @@
+{
+  "app": {
+    "name": "MGo",
+    "tagline": "Chat with your local models via LM Studio",
+    "heroTitle": "mgo",
+    "heroSubtitle": "Ask anything — Persian, local, fast"
+  },
+  "sidebar": {
+    "newChat": "New chat",
+    "conversations": "Conversations",
+    "settings": "Settings",
+    "deleteChat": "Delete",
+    "renameChat": "Rename",
+    "noConversations": "No conversations yet",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
+  },
+  "chat": {
+    "placeholder": "Ask anything…",
+    "attach": "Attach file or image",
+    "attachImage": "Attach image",
+    "uploadImageTooBig": "Image too large (max 8 MB)",
+    "uploadFileTooBig": "File too large (max 2 MB)",
+    "uploadFailed": "Upload failed",
+    "trySuggestions": "Try these suggestions",
+    "send": "Send",
+    "stop": "Stop",
+    "copy": "Copy",
+    "copied": "Copied",
+    "emptyTitle": "How can I help you today?",
+    "emptyHint": "Pick a model and start chatting with your local LLM.",
+    "suggestions": {
+      "explain": "Explain quantum computing in simple terms",
+      "code": "Write a Python function to sort a list",
+      "persian": "Write a short Persian poem",
+      "write": "Write a formal email in Persian",
+      "summarize": "Summarize the key points of this topic",
+      "translate": "Translate this to fluent Persian"
+    },
+    "thinking": "Thinking…",
+    "errorGeneric": "Something went wrong. Check LM Studio connection.",
+    "errorConnection": "Cannot reach LM Studio. Open Developer tab and start the server.",
+    "errorNoModel": "Please select a model first."
+  },
+  "header": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "selectModel": "Select model",
+    "noModels": "No models loaded"
+  },
+  "settings": {
+    "title": "Settings",
+    "close": "Close",
+    "connection": "Connection",
+    "model": "Model",
+    "inference": "Inference",
+    "appearance": "Appearance",
+    "about": "About",
+    "baseUrl": "API Base URL",
+    "apiKey": "API Key (optional)",
+    "testConnection": "Test connection",
+    "testing": "Testing…",
+    "testSuccess": "Connected successfully",
+    "testFailed": "Connection failed",
+    "defaultModel": "Default model",
+    "systemPrompt": "System prompt",
+    "systemPromptPlaceholder": "Extra instructions (optional) — Persian RTL replies are default",
+    "temperature": "Temperature",
+    "maxTokens": "Max tokens",
+    "topP": "Top P",
+    "language": "Language",
+    "theme": "Dark mode",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "langFa": "فارسی",
+    "langEn": "English",
+    "save": "Save",
+    "aboutText": "MGo is a modern chat UI for LM Studio. Version {{version}}.",
+    "lmStudioHelp": "LM Studio → Developer → Start server (port 1234)",
+    "devProxyHint": "Dev mode: requests go through /api/lmstudio proxy to LM Studio (fixes CORS)."
+  }
+}

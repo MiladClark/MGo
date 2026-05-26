@@ -1,0 +1,82 @@
+{
+  "app": {
+    "name": "MGo",
+    "tagline": "گفتگو با مدل‌های محلی از طریق LM Studio",
+    "heroTitle": "mgo",
+    "heroSubtitle": "هر چیزی بپرس — فارسی، محلی، سریع"
+  },
+  "sidebar": {
+    "newChat": "گفتگوی جدید",
+    "conversations": "گفتگوها",
+    "settings": "تنظیمات",
+    "deleteChat": "حذف",
+    "renameChat": "تغییر نام",
+    "noConversations": "هنوز گفتگویی ندارید",
+    "collapse": "بستن سایدبار",
+    "expand": "باز کردن سایدبار"
+  },
+  "chat": {
+    "placeholder": "هر چیزی بپرس…",
+    "attach": "پیوست فایل یا تصویر",
+    "attachImage": "پیوست تصویر",
+    "uploadImageTooBig": "تصویر بیش از حد بزرگ است (حداکثر ۸ مگابایت)",
+    "uploadFileTooBig": "فایل بیش از حد بزرگ است (حداکثر ۲ مگابایت)",
+    "uploadFailed": "آپلود ناموفق",
+    "trySuggestions": "پیشنهادها را امتحان کنید",
+    "send": "ارسال",
+    "stop": "توقف",
+    "copy": "کپی",
+    "copied": "کپی شد",
+    "emptyTitle": "امروز چطور می‌توانم کمکتان کنم؟",
+    "emptyHint": "یک مدل انتخاب کنید و با LLM محلی خود گفتگو را شروع کنید.",
+    "suggestions": {
+      "explain": "محاسبات کوانتومی را ساده توضیح بده",
+      "code": "یک تابع پایتون برای مرتب‌سازی لیست بنویس",
+      "persian": "یک شعر کوتاه فارسی بنویس",
+      "write": "یک ایمیل رسمی فارسی برای درخواست مرخصی بنویس",
+      "summarize": "این متن را خلاصه کن و نکات کلیدی را بگو",
+      "translate": "این جمله انگلیسی را به فارسی روان ترجمه کن"
+    },
+    "thinking": "در حال فکر کردن…",
+    "errorGeneric": "خطایی رخ داد. اتصال LM Studio را بررسی کنید.",
+    "errorConnection": "به LM Studio وصل نشد. تب Developer را باز کنید و سرور را Start کنید.",
+    "errorNoModel": "لطفاً ابتدا یک مدل انتخاب کنید."
+  },
+  "header": {
+    "connected": "متصل",
+    "disconnected": "قطع",
+    "selectModel": "انتخاب مدل",
+    "noModels": "مدلی لود نشده"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "close": "بستن",
+    "connection": "اتصال",
+    "model": "مدل",
+    "inference": "پارامترها",
+    "appearance": "ظاهر",
+    "about": "درباره",
+    "baseUrl": "آدرس پایه API",
+    "apiKey": "کلید API (اختیاری)",
+    "testConnection": "تست اتصال",
+    "testing": "در حال تست…",
+    "testSuccess": "اتصال موفق بود",
+    "testFailed": "اتصال ناموفق",
+    "defaultModel": "مدل پیش‌فرض",
+    "systemPrompt": "دستور سیستم",
+    "systemPromptPlaceholder": "دستور اضافی (اختیاری) — پاسخ فارسی و RTL به‌صورت پیش‌فرض فعال است",
+    "temperature": "دما (Temperature)",
+    "maxTokens": "حداکثر توکن",
+    "topP": "Top P",
+    "language": "زبان",
+    "theme": "حالت تیره",
+    "themeLight": "روشن",
+    "themeDark": "تیره",
+    "langFa": "فارسی",
+    "langEn": "English",
+    "save": "ذخیره",
+    "aboutText": "MGo رابط چت مدرن برای LM Studio است. نسخه {{version}}.",
+    "lmStudioHelp": "LM Studio → Developer → Start server (پورت 1234)",
+    "devProxyHint": "حالت توسعه: درخواست‌ها از طریق /api/lmstudio به LM Studio هدایت می‌شوند (رفع CORS)."
+  }
+}
