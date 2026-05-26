@@ -328,7 +328,9 @@ export function SettingsPanel({ open, onOpenChange }: SettingsPanelProps) {
             <section className="rounded-xl border border-border/60 bg-muted/20 p-4">
               <h3 className="mb-2 text-sm font-semibold">{t("settings.about")}</h3>
               <p className="text-xs text-muted-foreground">
-                {t("settings.aboutText", { version: "0.1.0" })}
+                {t("settings.aboutText", {
+                  version: import.meta.env.VITE_APP_VERSION ?? "0.0.0",
+                })}
               </p>
             </section>
           </div>

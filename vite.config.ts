@@ -1,12 +1,24 @@
 import path from "node:path";
+import { readFileSync } from "node:fs";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { mgoUpdatePlugin } from "./vite-plugin-mgo-update";
 
 const host = process.env.TAURI_DEV_HOST;
+const pkg = JSON.parse(
+  readFileSync(path.resolve(__dirname, "package.json"), "utf-8"),
+) as { version: string };
 
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
+export default defineConfig(({ command }) => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(command === "serve" ? [mgoUpdatePlugin()] : []),
+  ],
+  define: {
+    "import.meta.env.VITE_APP_VERSION": JSON.stringify(pkg.version),
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -21,7 +33,7 @@ export default defineConfig({
       "/api/lmstudio": {
         target: "http://127.0.0.1:1234",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/lmstudio/, ""),
+        rewrite: (p) => p.replace(/^\/api\/lmstudio/, ""),
       },
     },
     hmr: host
@@ -35,4 +47,4 @@ export default defineConfig({
       ignored: ["**/src-tauri/**"],
     },
   },
-});
+}));

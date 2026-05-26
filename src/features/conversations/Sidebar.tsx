@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/Logo";
+import { UpdateBanner } from "@/features/conversations/UpdateBanner";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { useConversationsStore } from "@/stores/conversationsStore";
@@ -96,6 +97,8 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
         </Button>
       </div>
 
+      <UpdateBanner />
+
       <p className="shrink-0 px-4 py-2 text-xs font-medium text-muted-foreground">
         {t("sidebar.conversations")}
       </p>
@@ -181,7 +184,7 @@ export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
         </div>
         <Button
           variant="ghost"
-          className="w-full min-w-0 justify-start gap-2 rounded-xl border border-accent"
+          className="w-full min-w-0 justify-start gap-2 rounded-xl border border-border/70 bg-background/20"
           onClick={onOpenSettings}
         >
           <Settings className="h-4 w-4 shrink-0" />

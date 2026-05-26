@@ -5,6 +5,18 @@
     "heroTitle": "mgo",
     "heroSubtitle": "Ask anything — Persian, local, fast"
   },
+  "update": {
+    "critical": "Version {{version}} — critical update available",
+    "available": "Version {{version}} — update available",
+    "button": "Update",
+    "pulling": "Updating…",
+    "success": "Update complete",
+    "error": "Update failed",
+    "noGit": "No Git folder — install via git clone",
+    "browserOnly": "Updates only work in desktop app or npm run mgo",
+    "restartHint": "Restart the app to apply all changes.",
+    "dismiss": "Dismiss"
+  },
   "sidebar": {
     "newChat": "New chat",
     "conversations": "Conversations",

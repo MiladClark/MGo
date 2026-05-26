@@ -66,10 +66,18 @@ The home screen above shows the Persian RTL layout: sidebar, model selector, con
 
 ### 1. Clone and install
 
+> **Important:** Install with `git clone`, not the GitHub ZIP download. In-app updates use `git pull` and require a `.git` folder.
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/mgo.git
 cd mgo
 npm install
+```
+
+Optional: set your repo for update checks in `.env`:
+
+```env
+VITE_GITHUB_REPO=your-username/mgo
 ```
 
 ### 2. Start LM Studio
@@ -120,6 +128,16 @@ src-tauri/target/release/bundle/
 ```
 
 (e.g. `.msi` / `.exe` on Windows, `.dmg` on macOS, `.AppImage` / `.deb` on Linux)
+
+---
+
+## In-app updates
+
+When you open MGo, it checks `origin/main` on GitHub for new commits. If an update is available, a banner appears in the sidebar (above **Conversations**). Click **Update** to run `git pull origin main`.
+
+- **Browser dev** (`npm run mgo`): update API runs via the Vite dev server on your machine.
+- **Desktop** (`npm run tauri dev` / built app): update runs through Tauri Git commands.
+- Bump `version` in `package.json` before pushing to `main` so the banner shows the new version number.
 
 ---
 

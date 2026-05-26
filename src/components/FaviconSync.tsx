@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSettingsStore } from "@/stores/settingsStore";
-import mgoFavBlack from "@/assets/mgo-fav-black.png";
-import mgoFavWhite from "@/assets/mgo-fav-white.png";
+import mgoLogoDark from "@/assets/new-logo.svg";
+import mgoLogoLight from "@/assets/new-logo-black.svg";
 
 export function FaviconSync() {
   const theme = useSettingsStore((s) => s.theme);
@@ -11,10 +11,10 @@ export function FaviconSync() {
     if (!link) {
       link = document.createElement("link");
       link.rel = "icon";
-      link.type = "image/png";
       document.head.appendChild(link);
     }
-    link.href = theme === "dark" ? mgoFavWhite : mgoFavBlack;
+    link.type = "image/svg+xml";
+    link.href = theme === "dark" ? mgoLogoDark : mgoLogoLight;
   }, [theme]);
 
   return null;

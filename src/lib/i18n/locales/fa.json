@@ -5,6 +5,18 @@
     "heroTitle": "mgo",
     "heroSubtitle": "هر چیزی بپرس — فارسی، محلی، سریع"
   },
+  "update": {
+    "critical": "نسخه {{version}} — آپدیت حیاتی موجود است",
+    "available": "نسخه {{version}} — به‌روزرسانی موجود است",
+    "button": "آپدیت",
+    "pulling": "در حال آپدیت…",
+    "success": "آپدیت انجام شد",
+    "error": "آپدیت ناموفق بود",
+    "noGit": "پوشه Git یافت نشد — با git clone نصب کنید",
+    "browserOnly": "آپدیت فقط در نسخه دسکتاپ یا npm run mgo ممکن است",
+    "restartHint": "برای اعمال کامل، اپ را ببندید و دوباره اجرا کنید.",
+    "dismiss": "بستن"
+  },
   "sidebar": {
     "newChat": "گفتگوی جدید",
     "conversations": "گفتگوها",

@@ -12,6 +12,7 @@ import { useSettingsStore } from "@/stores/settingsStore";
 import { useConversationsStore } from "@/stores/conversationsStore";
 import { useChatStore } from "@/stores/chatStore";
 import { useUiStore } from "@/stores/uiStore";
+import { useUpdateStore } from "@/stores/updateStore";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 
@@ -50,6 +51,11 @@ export function AppLayout() {
       void fetchModels();
     }
   }, [settingsHydrated, convHydrated, fetchModels]);
+
+  useEffect(() => {
+    if (!settingsHydrated) return;
+    void useUpdateStore.getState().checkUpdate();
+  }, [settingsHydrated]);
 
   useEffect(() => {
     if (!settingsHydrated) return;

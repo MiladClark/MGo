@@ -251,7 +251,9 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
           <section className="space-y-2">
             <h3 className="text-sm font-semibold">{t("settings.about")}</h3>
             <p className="text-sm text-muted-foreground">
-              {t("settings.aboutText", { version: "0.1.0" })}
+              {t("settings.aboutText", {
+                version: import.meta.env.VITE_APP_VERSION ?? "0.0.0",
+              })}
             </p>
           </section>
 
