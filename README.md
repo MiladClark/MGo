@@ -6,6 +6,8 @@ A modern, bilingual chat interface for **local LLMs** powered by [LM Studio](htt
 ![Tauri](https://img.shields.io/badge/Tauri-2-24C8DB?logo=tauri)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 
+![MGo — Persian RTL chat UI for LM Studio](docs/screenshot-home.png)
+
 ---
 
 ## Features
@@ -26,8 +28,7 @@ A modern, bilingual chat interface for **local LLMs** powered by [LM Studio](htt
 
 ## Screenshots
 
-<!-- Add screenshots to /docs or /.github and link them here -->
-<!-- ![MGo Chat](docs/screenshot-chat.png) -->
+The home screen above shows the Persian RTL layout: sidebar, model selector, connection status, and suggestion prompts.
 
 ---
 
@@ -80,12 +81,12 @@ npm install
 ### 3. Run in the browser (development)
 
 ```bash
-npm run dev
+npm run mgo
 ```
 
 Open [http://localhost:1420](http://localhost:1420).
 
-In dev mode, API calls to local LM Studio are proxied through `/api/lmstudio` to avoid browser CORS issues.
+While `mgo` is running, API calls to local LM Studio are proxied through `/api/lmstudio` to avoid browser CORS issues.
 
 ### 4. Run as a desktop app (development)
 
@@ -192,10 +193,10 @@ While the model is streaming, the chat does **not** force-scroll to the bottom. 
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start Vite dev server on port `1420` |
+| `npm run mgo` | Start MGo dev server (Vite) on port `1420` |
 | `npm run build` | Type-check and build frontend to `dist/` |
 | `npm run preview` | Preview production build |
-| `npm run tauri dev` | Run Tauri app in development |
+| `npm run tauri dev` | Run Tauri app in development (uses `npm run mgo` internally) |
 | `npm run tauri build` | Build desktop installers |
 
 ---

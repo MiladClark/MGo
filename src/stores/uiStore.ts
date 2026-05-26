@@ -17,8 +17,11 @@ export const useUiStore = create<UiState>((set, get) => ({
 
   hydrate: async () => {
     const saved = await loadPersisted<{ sidebarOpen?: boolean }>(STORAGE_KEY);
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches;
     set({
-      sidebarOpen: saved?.sidebarOpen ?? true,
+      sidebarOpen: saved?.sidebarOpen ?? !isMobile,
       hydrated: true,
     });
   },

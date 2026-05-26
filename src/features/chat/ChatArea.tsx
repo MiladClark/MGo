@@ -121,18 +121,18 @@ export function ChatArea() {
   if (isEmpty) {
     return (
       <div className="flex h-full flex-1 flex-col">
-        <div className="flex flex-1 flex-col items-center justify-center px-4 pb-6">
-          <div className="mb-10 flex flex-col items-center text-center">
-            <Logo variant="wordmark" className="mb-4 h-12 sm:h-14" />
+        <div className="flex flex-1 flex-col items-center justify-center px-3 pb-4 pt-2 sm:px-4 sm:pb-6">
+          <div className="mb-6 flex flex-col items-center text-center sm:mb-10">
+            <Logo variant="wordmark" className="mb-3 h-10 sm:mb-4 sm:h-14" />
             <p className="text-sm text-muted-foreground">{t("app.heroSubtitle")}</p>
           </div>
 
           <ChatInput centered onSend={handleSend} />
 
-          <p className="mb-4 mt-8 text-center text-xs text-muted-foreground">
+          <p className="mb-3 mt-6 text-center text-xs text-muted-foreground sm:mb-4 sm:mt-8">
             {t("chat.trySuggestions")}
           </p>
-          <div className="grid w-full max-w-3xl grid-cols-1 gap-2 sm:grid-cols-2">
+          <div className="grid w-full max-w-3xl grid-cols-1 gap-2 px-1 sm:grid-cols-2 sm:px-0">
             {suggestionKeys.map((key, i) => {
               const Icon = SUGGESTION_ICONS[i] ?? Sparkles;
               return (
@@ -163,7 +163,7 @@ export function ChatArea() {
           "[overflow-anchor:none]",
         )}
       >
-        <div className="mx-auto w-full max-w-3xl space-y-8 px-4 py-8 [overflow-anchor:none]">
+        <div className="mx-auto w-full max-w-3xl space-y-6 px-3 py-4 [overflow-anchor:none] sm:space-y-8 sm:px-4 sm:py-8">
           {messages.map((m) => (
             <MessageBubble key={m.id} message={m} />
           ))}
@@ -180,7 +180,7 @@ export function ChatArea() {
 
       {error && (
         <div
-          className="mx-auto mb-2 flex max-w-3xl items-center justify-between gap-2 rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-2 text-sm text-destructive"
+          className="mx-2 mb-2 flex max-w-3xl items-center justify-between gap-2 rounded-xl border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive sm:mx-auto sm:px-4"
           dir="rtl"
         >
           <span>

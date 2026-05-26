@@ -19,6 +19,8 @@ import { useUiStore } from "@/stores/uiStore";
 
 interface SidebarProps {
   onOpenSettings: () => void;
+  /** Called after navigation on mobile (closes drawer) */
+  onClose?: () => void;
 }
 
 function clipTitle(title: string, max = 32): string {
@@ -27,7 +29,7 @@ function clipTitle(title: string, max = 32): string {
   return `${t.slice(0, max)}…`;
 }
 
-export function Sidebar({ onOpenSettings }: SidebarProps) {
+export function Sidebar({ onOpenSettings, onClose }: SidebarProps) {
   const { t } = useTranslation();
   const conversations = useConversationsStore((s) => s.conversations);
   const activeId = useConversationsStore((s) => s.activeId);
@@ -44,6 +46,12 @@ export function Sidebar({ onOpenSettings }: SidebarProps) {
 
   const handleNewChat = () => {
     createConversation(selectedModel || defaultModel);
+    onClose?.();
+  };
+
+  const selectConversation = (id: string) => {
+    setActive(id);
+    onClose?.();
   };
 
   const startRename = (id: string, title: string) => {
@@ -59,7 +67,7 @@ export function Sidebar({ onOpenSettings }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "flex h-full w-[280px] min-w-[280px] max-w-[280px] shrink-0 flex-col overflow-hidden border-s border-border/50 bg-sidebar/95 backdrop-blur-md",
+        "flex h-full w-full min-w-0 max-w-full shrink-0 flex-col overflow-hidden border-s border-border/50 bg-sidebar/95 backdrop-blur-md md:w-[280px] md:min-w-[280px] md:max-w-[280px]",
       )}
     >
       <div className="flex items-center justify-between gap-1 p-3">
@@ -122,14 +130,14 @@ export function Sidebar({ onOpenSettings }: SidebarProps) {
                     <button
                       type="button"
                       className="block w-full max-w-full overflow-hidden py-2.5 ps-3 pe-[4.25rem] text-start"
-                      onClick={() => setActive(c.id)}
+                      onClick={() => selectConversation(c.id)}
                       title={c.title}
                     >
                       <span className="block w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm font-normal leading-snug text-sidebar-foreground">
                         {label}
                       </span>
                     </button>
-                    <div className="absolute inset-y-0 end-0.5 flex items-center gap-0 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                    <div className="absolute inset-y-0 end-0.5 flex items-center gap-0 opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
                       <Button
                         variant="ghost"
                         size="icon"

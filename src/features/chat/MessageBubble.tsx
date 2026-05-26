@@ -34,7 +34,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
     >
       <div
         className={cn(
-          "relative w-full max-w-3xl rounded-2xl px-5 py-4",
+          "relative w-full max-w-3xl rounded-xl px-3 py-3 sm:rounded-2xl sm:px-5 sm:py-4",
           isUser
             ? "bg-secondary/80 border border-border/60"
             : "bg-transparent",

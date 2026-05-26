@@ -197,3 +197,7 @@ html.dark .prose-chat pre .hljs {
   background: oklch(0.78 0.02 260 / 0.42);
   background-clip: padding-box;
 }
+
+.pb-safe {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}

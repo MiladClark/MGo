@@ -91,8 +91,10 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
   return (
     <div
       className={cn(
-        "w-full px-4",
-        centered ? "pb-8" : "border-t border-border/40 bg-background/90 py-4 backdrop-blur-xl",
+        "w-full px-2 pb-safe sm:px-4",
+        centered
+          ? "pb-6 sm:pb-8"
+          : "border-t border-border/40 bg-background/90 py-3 backdrop-blur-xl sm:py-4",
       )}
     >
       <div className="mx-auto w-full max-w-3xl">
@@ -125,7 +127,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
           </div>
         )}
 
-        <div className="rounded-3xl border border-border/80 bg-card/90 shadow-2xl shadow-black/20 ring-1 ring-white/5 transition-shadow focus-within:ring-primary/30">
+        <div className="rounded-2xl border border-border/80 bg-card/90 shadow-2xl shadow-black/20 ring-1 ring-white/5 transition-shadow focus-within:ring-primary/30 sm:rounded-3xl">
           <Textarea
             ref={textareaRef}
             value={text}
@@ -134,12 +136,12 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
             placeholder={t("chat.placeholder")}
             rows={centered ? 2 : 1}
             dir="rtl"
-            className="min-h-[56px] max-h-[220px] resize-none border-0 bg-transparent px-5 pt-5 pb-2 text-[15px] leading-relaxed shadow-none focus-visible:ring-0"
+            className="min-h-[52px] max-h-[180px] resize-none border-0 bg-transparent px-3 pt-4 pb-2 text-[15px] leading-relaxed shadow-none focus-visible:ring-0 sm:min-h-[56px] sm:max-h-[220px] sm:px-5 sm:pt-5"
             disabled={isStreaming}
           />
 
-          <div className="flex items-center justify-between gap-2 px-3 pb-3">
-            <div className="flex items-center gap-1">
+          <div className="flex flex-col gap-2 px-2 pb-2 sm:flex-row sm:items-center sm:justify-between sm:px-3 sm:pb-3">
+            <div className="flex items-center gap-0.5 sm:gap-1">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -177,7 +179,7 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
               </Button>
               <span
                 className={cn(
-                  "ms-1 hidden rounded-full px-2 py-0.5 text-[10px] font-medium sm:inline",
+                  "ms-1 rounded-full px-2 py-0.5 text-[10px] font-medium",
                   connected
                     ? "bg-emerald-500/15 text-emerald-400"
                     : "bg-muted text-muted-foreground",
@@ -187,14 +189,14 @@ export function ChatInput({ onSend, centered = false }: ChatInputProps) {
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
               <Select
                 value={selectedModel || undefined}
                 onValueChange={setSelectedModel}
                 disabled={models.length === 0}
               >
                 <SelectTrigger
-                  className="h-9 max-w-[200px] border-0 bg-muted/50 text-xs"
+                  className="h-9 min-w-0 flex-1 border-0 bg-muted/50 text-xs sm:max-w-[200px] sm:flex-none"
                   dir="ltr"
                 >
                   <SelectValue placeholder={t("header.selectModel")} />
